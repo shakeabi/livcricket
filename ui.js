@@ -13,7 +13,6 @@ const BigText = require('ink-big-text');
 const InkBox = require('ink-box');
 const SelectInput = require('ink-select-input').default;
 const Spinner = require('ink-spinner').default;
-const Link = require('ink-link');
 const TextInput = require('ink-text-input').default;
 
 const PropTypes = require('prop-types');
@@ -102,7 +101,7 @@ const App = ({ mode }) => {
 	}, []);
 
 	const customSelectItemComponent = item => {
-		return <Link url={item.link}><Color green={item.isSelected}>{item.label}</Color></Link>;
+		return <Color green={item.isSelected}>{item.label}</Color>;
 	};
 
 	const normalMode = (
