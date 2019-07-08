@@ -1,0 +1,67 @@
+{
+	"name": "livCricket",
+	"version": "1.0.0",
+	"license": "MIT",
+	"bin": "cli.js",
+	"engines": {
+		"node": ">=8"
+	},
+	"scripts": {
+		"test": "xo && ava"
+	},
+	"files": [
+		"cli.js",
+		"ui.js"
+	],
+	"dependencies": {
+		"execa": "^2.0.3",
+		"import-jsx": "^2.0.0",
+		"ink": "^2.3.0",
+		"ink-big-text": "^1.0.1",
+		"ink-box": "^1.0.0",
+		"ink-gradient": "^1.0.0",
+		"ink-link": "^1.0.0",
+		"ink-select-input": "^3.1.1",
+		"ink-spinner": "^3.0.1",
+		"ink-text-input": "^3.2.0",
+		"meow": "^5.0.0",
+		"node-html-parser": "^1.1.16",
+		"prop-types": "^15.7.2",
+		"react": "^16.8.6",
+		"xml-parser": "^1.2.1"
+	},
+	"devDependencies": {
+		"@babel/core": "^7.5.0",
+		"@babel/preset-react": "^7.0.0",
+		"@babel/preset-env": "^7.5.0",
+		"@babel/register": "^7.4.4",
+		"ava": "^2.1.0",
+		"chalk": "^2.4.2",
+		"eslint-config-xo-react": "^0.20.0",
+		"eslint-plugin-react": "^7.14.2",
+		"eslint-plugin-react-hooks": "^1.6.1",
+		"ink-testing-library": "^1.0.2",
+		"xo": "^0.24.0"
+	},
+	"ava": {
+		"require": [
+			"@babel/register"
+		]
+	},
+	"babel": {
+		"presets": [
+			"@babel/preset-react",
+			[
+				"@babel/preset-env",
+				{
+					"targets": {
+						"node": true
+					}
+				}
+			]
+		]
+	},
+	"xo": {
+		"extends": "xo-react"
+	}
+}
