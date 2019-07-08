@@ -30,9 +30,38 @@ const App = ({ mode }) => {
 	const [matchSelected, setMatchSelected] = useState(false);
 	const [scoreSummary, setScoreSummary] = useState('');
 
-	const handleSettingsSubmit = ()=>{
 
-	}
+	useEffect(() => {
+		(async () => {
+			const fetchRss = await execa('curl', ['-k', '-L', '-s', rss_feed]);
+			const xml = parser(fetchRss.stdout);
+			const rawMatches = xml.root.children[0].children.filter(ele => {
+				if (ele.name == 'item') return true;
+			});
+
+			const matches = rawMatches.map((ele, idx) => {
+				const title = ele.children.filter(subEle => {
+					return subEle.name == 'title';
+				})[0].content;
+				const rssLink = ele.children.filter(subEle => {
+					return subEle.name == 'link';
+				})[0].content;
+
+				const link = ele.children.filter(subEle => {
+					return subEle.name == 'guid';
+				})[0].content;
+
+				return {
+					label: title,
+					value: rssLink,
+					link,
+				};
+			});
+			await setMatchItems(matches);
+			setLoading(false);
+			const noOfMatches = matches.length;
+		})();
+	}, []);
 
 	const handleSelect = async item => {
 		await setMatchSelected(true);
@@ -67,38 +96,6 @@ const App = ({ mode }) => {
 			await sleep(parseInt(settings.refreshTime) * 1000);
 		}
 	};
-
-	useEffect(() => {
-		(async () => {
-			const fetchRss = await execa('curl', ['-k', '-L', '-s', rss_feed]);
-			const xml = parser(fetchRss.stdout);
-			const rawMatches = xml.root.children[0].children.filter(ele => {
-				if (ele.name == 'item') return true;
-			});
-
-			const matches = rawMatches.map((ele, idx) => {
-				const title = ele.children.filter(subEle => {
-					return subEle.name == 'title';
-				})[0].content;
-				const rssLink = ele.children.filter(subEle => {
-					return subEle.name == 'link';
-				})[0].content;
-
-				const link = ele.children.filter(subEle => {
-					return subEle.name == 'guid';
-				})[0].content;
-
-				return {
-					label: title,
-					value: rssLink,
-					link,
-				};
-			});
-			await setMatchItems(matches);
-			setLoading(false);
-			const noOfMatches = matches.length;
-		})();
-	}, []);
 
 	const customSelectItemComponent = item => {
 		return <Color green={item.isSelected}>{item.label}</Color>;
