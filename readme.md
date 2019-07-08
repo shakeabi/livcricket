@@ -7,7 +7,7 @@
 
 ```bash
 $ git clone https://github.com/shakeabi/livCricket.git
-$ npm install --global livCriket
+$ npm install --global livCricket
 ```
 
 
