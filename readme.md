@@ -37,5 +37,5 @@ $ livCriket --help
 	-> Made with lots of love by Abishake (https://github.com/shakeabi)
 	-> Thanks to AdarshPatel (https://github.com/adarshPatel509)
 ```
-!["ScreenShot1"](./ss1.png)
-!["ScreenShot2"](./ss2.png)
+<img src="ss1.png" alt="screenshot"/>
+<img src="ss2.png" alt="screenshot"/>
