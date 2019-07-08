@@ -30,7 +30,6 @@ const App = ({ mode }) => {
 	const [matchSelected, setMatchSelected] = useState(false);
 	const [scoreSummary, setScoreSummary] = useState('');
 
-
 	useEffect(() => {
 		(async () => {
 			const fetchRss = await execa('curl', ['-k', '-L', '-s', rss_feed]);
@@ -72,8 +71,10 @@ const App = ({ mode }) => {
 			const root = parse(fetchHtml.stdout);
 			let scoreText = root.querySelector('title').rawText;
 			scoreText = scoreText.replace(/\)[^]*/, '') + ')';
-			if (scoreText.length > settings.maxCharacters)
+			if (scoreText.length > settings.maxCharacters) {
 				scoreText = scoreText.substr(0, settings.maxCharacters);
+				scoreText += '...'
+			}
 
 			await setScoreSummary(scoreText);
 
@@ -162,12 +163,14 @@ const App = ({ mode }) => {
 				</Gradient>
 			</Static>
 			<InkBox borderStyle="round" borderColor="cyan" float="center">
-						<Box textWrap={'wrap'}>
-							<Text>Oops! Sorry command not found! Try 'livcricket --help' for help</Text>
-						</Box>
-					</InkBox>
+				<Box textWrap={'wrap'}>
+					<Text>
+						Oops! Sorry command not found! Try 'livcricket --help' for help
+					</Text>
+				</Box>
+			</InkBox>
 		</Box>
-	)
+	);
 
 	if (mode == 'normal') {
 		return normalMode;
