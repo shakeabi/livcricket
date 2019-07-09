@@ -1,34 +1,34 @@
-# livCricket
+# livcricket
 
-> livCricket is a simple CLI made using React-ink for cricket lovers.
+> livcricket is a simple CLI made using React-ink for cricket lovers.
 
 
 ## Install
 
 ```bash
-$ git clone https://github.com/shakeabi/livCricket.git
-$ npm install --global livCricket
+$ git clone https://github.com/shakeabi/livcricket.git
+$ npm install --global livcricket
 ```
 
 
 ## CLI
 
 ```
-$ livCriket --help
+$ livcriket --help
 
   Usage
-    $ livCriket
+    $ livcriket
 
   Options
     --version
 
   Examples
-    $ livCriket --version
+    $ livcriket --version
     1.0.0
 
   Note:
 	-> Checkout the settings.json to look into more features of the app.
-	-> You need to have zenity to enable notifications, try 'zenity --notifciation --text="Hey Sexy!"' to check if you've zenity support.
+	-> You need to have zenity to enable notifications, try 'zenity --notification --text="Hey Sexy!"' to check if you've zenity support.
 	-> The refreshtime must be given in seconds.
 	-> Maxcharacters can be modified if you've smaller or bigger terminals. It'll be reflected in the score display.
 	-> Drop a star if you find this project useful (https://github.com/shakeabi/livcricket)
