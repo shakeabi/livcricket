@@ -1,6 +1,6 @@
 # livcricket
 
-> livcricket is a simple CLI made using React-ink for cricket lovers.
+> livcricket is a simple CLI made using React-ink for cricket lovers. It includes various features like notifications and customisable refreshTime.
 
 
 ## Install
