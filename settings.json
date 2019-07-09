@@ -1,5 +1,5 @@
 {
   "refreshTime": 30,
-  "notifications": true,
+  "notifications": false,
   "maxCharacters": 80
 }
