@@ -28,7 +28,7 @@ const App = ({ mode }) => {
 	const [loading, setLoading] = useState(true);
 	const [matchItems, setMatchItems] = useState([]);
 	const [matchSelected, setMatchSelected] = useState(false);
-	const [scoreSummary, setScoreSummary] = useState('');
+	const [scoreSummary, setScoreSummary] = useState({ score: '', status: '' });
 
 	useEffect(() => {
 		(async () => {
@@ -69,14 +69,16 @@ const App = ({ mode }) => {
 
 			const fetchHtml = await execa('curl', ['-k', '-L', '-s', item.value]);
 			const root = parse(fetchHtml.stdout);
+			let statusText = root.querySelector('.cscore_time').innerHTML;
+			statusText = statusText.split(' ')[0];
 			let scoreText = root.querySelector('title').rawText;
 			scoreText = scoreText.replace(/\)[^]*/, '') + ')';
 			if (scoreText.length > settings.maxCharacters) {
 				scoreText = scoreText.substr(0, settings.maxCharacters);
-				scoreText += '...'
+				scoreText += '...';
 			}
 
-			await setScoreSummary(scoreText);
+			await setScoreSummary({ score: scoreText, status: statusText });
 
 			if (settings.notifications) {
 				try {
@@ -124,6 +126,11 @@ const App = ({ mode }) => {
 						<Color green>
 							<Text>✔ Fetched!</Text>
 						</Color>
+						{matchSelected && (
+								<Color redBright>
+									<Text bold>{`${scoreSummary.status}`}</Text>
+								</Color>
+						)}
 					</Box>
 				)}
 			</Box>
@@ -147,7 +154,9 @@ const App = ({ mode }) => {
 				<Box flexDirection="column">
 					<InkBox borderStyle="round" borderColor="cyan" float="center">
 						<Box textWrap={'wrap'}>
-							<Text>{`${scoreSummary}`}</Text>
+							<Color whiteBright>
+								<Text>{`${scoreSummary.score}`}</Text>
+							</Color>
 						</Box>
 					</InkBox>
 				</Box>
