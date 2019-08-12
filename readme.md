@@ -7,7 +7,9 @@
 
 ```bash
 $ git clone https://github.com/shakeabi/livcricket.git
-$ npm install --global livcricket
+$ cd livcricket
+$ npm install
+$ npm link
 ```
 
 
@@ -39,3 +41,6 @@ $ livcriket --help
 ```
 <img src="ss1.png" alt="screenshot"/>
 <img src="ss2.png" alt="screenshot"/>
+$ git clone https://github.com/shakeabi/livcricket.git
+10
+$ npm install --global livcricket
