@@ -82,15 +82,14 @@ const App = ({ mode }) => {
 
 			if (settings.notifications) {
 				try {
-					const notif = execa('zenity', [
-						'--notification',
-						`--text=${scoreText}`,
+					const notif = execa('notify-send', [
+						`${scoreText}`,
 					]);
-					await sleep(500);
-					notif.kill();
+					//await sleep(500);
+					//notif.kill();
 				} catch (err) {
 					console.log(
-						"Error: Either your computer does not have zenity or doesn't support --notifications"
+						"Error: Please check if your computer has notify-send"
 					);
 				}
 			}
@@ -124,7 +123,7 @@ const App = ({ mode }) => {
 				) : (
 					<Box>
 						<Color green>
-							<Text>✔ Fetched!</Text>
+							<Text>✔ Fetchedah!</Text>
 						</Color>
 						{matchSelected && (
 								<Color redBright>
