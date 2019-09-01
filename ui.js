@@ -123,7 +123,7 @@ const App = ({ mode }) => {
 				) : (
 					<Box>
 						<Color green>
-							<Text>✔ Fetchedah!</Text>
+							<Text>✔ Fetched!</Text>
 						</Color>
 						{matchSelected && (
 								<Color redBright>
