@@ -70,7 +70,6 @@ const App = ({ mode }) => {
 			const fetchHtml = await execa('curl', ['-k', '-L', '-s', item.value]);
 			const root = parse(fetchHtml.stdout);
 			let statusText = root.querySelector('.cscore_time').innerHTML;
-			statusText = statusText.split(' ')[0];
 			let scoreText = root.querySelector('title').rawText;
 			scoreText = scoreText.replace(/\)[^]*/, '') + ')';
 			if (scoreText.length > settings.maxCharacters) {
