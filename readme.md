@@ -12,6 +12,11 @@ $ npm install
 $ npm link
 ```
 
+## Uninstall
+
+```bash
+$ npm unlink - (from project directory)
+```
 
 ## CLI
 
