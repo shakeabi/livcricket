@@ -66,33 +66,38 @@ const App = ({ mode }) => {
 		await setMatchSelected(true);
 		while (true) {
 			await setLoading(true);
-
-			const fetchHtml = await execa('curl', ['-k', '-L', '-s', item.value]);
-			const root = parse(fetchHtml.stdout);
-			let statusText = root.querySelector('.cscore_time').innerHTML;
-			let scoreText = root.querySelector('title').rawText;
-			scoreText = scoreText.replace(/\)[^]*/, '') + ')';
-			if (scoreText.length > settings.maxCharacters) {
-				scoreText = scoreText.substr(0, settings.maxCharacters);
-				scoreText += '...';
-			}
-
-			await setScoreSummary({ score: scoreText, status: statusText });
-
-			if (settings.notifications) {
-				try {
-					const notif = execa('notify-send', [
-						`${scoreText}`,
-					]);
-					//await sleep(500);
-					//notif.kill();
-				} catch (err) {
-					console.log(
-						"Error: Please check if your computer has notify-send"
-					);
+			
+			try{
+				const fetchHtml = await execa('curl', ['-k', '-L', '-s', item.link]);
+				const root = parse(fetchHtml.stdout);
+				
+				let statusText = root.querySelector('.status-label').innerHTML;
+				let scoreText = root.querySelector('title').rawText;
+				scoreText = scoreText.replace(/\)[^]*/, '') + ')';
+				if (scoreText.length > settings.maxCharacters) {
+					scoreText = scoreText.substr(0, settings.maxCharacters);
+					scoreText += '...';
 				}
-			}
+				await setScoreSummary({ score: scoreText, status: statusText });
 
+				if (settings.notifications) {
+					try {
+						const notif = execa('notify-send', [
+							`${scoreText}`,
+						]);
+						//await sleep(500);
+						//notif.kill();
+					} catch (err) {
+						console.log(
+							"Error: Please check if your computer has notify-send"
+						);
+					}
+				}
+
+			} catch(err){
+				console.log("Opps, seems to be an error. Try again. If the error persists contact the maintainer.", err);
+			}
+			
 			await setLoading(false);
 			await sleep(parseInt(settings.refreshTime) * 1000);
 		}
@@ -108,6 +113,7 @@ const App = ({ mode }) => {
 				<Gradient name={'instagram'}>
 					<BigText text="LivCricket" font="chrome" align="center" />
 				</Gradient>
+				<Text>{scoreSummary.status}</Text>
 			</Static>
 			<Box justifyContent="center" width={'100%'} flexDirection={'row'}>
 				{loading ? (
@@ -122,7 +128,7 @@ const App = ({ mode }) => {
 				) : (
 					<Box>
 						<Color green>
-							<Text>✔ Fetched!</Text>
+							<Text>✔ Fetched! </Text>
 						</Color>
 						{matchSelected && (
 								<Color redBright>
@@ -132,7 +138,7 @@ const App = ({ mode }) => {
 					</Box>
 				)}
 			</Box>
-			{!matchSelected && matchItems.length && (
+			{!matchSelected && matchItems.length>0 && (
 				<Box flexDirection="column">
 					<InkBox borderStyle="round" borderColor="cyan" float="center">
 						Number Of Matches: {matchItems.length}

@@ -4,6 +4,8 @@ import test from 'ava';
 import {render} from 'ink-testing-library';
 import App from './ui';
 
+// TODO: Add tests
+
 test('greet unknown user', t => {
 	const {lastFrame} = render(<App/>);
 

@@ -13,6 +13,7 @@ const cli = meow(`
 
 	Options
 		--version
+		--help
 
 	Examples
 	  $ livCriket --version
