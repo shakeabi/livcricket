@@ -9,6 +9,7 @@
 $ git clone https://github.com/shakeabi/livcricket.git
 $ cd livcricket
 $ npm install
+$ Configure the settings.json
 $ npm link
 ```
 
