@@ -1,5 +1,6 @@
 {
   "refreshTime": 30,
   "notifications": false,
-  "maxCharacters": 80
+  "maxCharacters": 80,
+  "repo_path": "<repo_local_path> (can be obtained by executing pwd)"
 }

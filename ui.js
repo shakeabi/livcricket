@@ -70,7 +70,7 @@ const App = ({ mode }) => {
 			try{
 				const fetchHtml = await execa('curl', ['-k', '-L', '-s', item.link]);
 				const root = parse(fetchHtml.stdout);
-				
+
 				let statusText = root.querySelector('.status-label').innerHTML;
 				let scoreText = root.querySelector('title').rawText;
 				scoreText = scoreText.replace(/\)[^]*/, '') + ')';
@@ -83,6 +83,8 @@ const App = ({ mode }) => {
 				if (settings.notifications) {
 					try {
 						const notif = execa('notify-send', [
+							'-i',
+							`${settings.repo_location}/lc_logo.png`,
 							`${scoreText}`,
 						]);
 						//await sleep(500);
