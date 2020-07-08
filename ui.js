@@ -85,7 +85,7 @@ const App = ({ mode }) => {
 						const notif = execa('notify-send', [
 							'-i',
 							`${settings.repo_path}/lc_logo.png`,
-							`${scoreText}`,
+							`${statusText}\n${scoreText}`,
 						]);
 						//await sleep(500);
 						//notif.kill();
