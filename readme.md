@@ -5,7 +5,7 @@
 
 ## Install
 
-```bash
+```
 $ git clone https://github.com/shakeabi/livcricket.git
 $ cd livcricket
 $ npm install
@@ -15,8 +15,17 @@ $ npm link
 
 ## Uninstall
 
-```bash
+```
 $ npm unlink - (from project directory)
+```
+
+## Settings
+
+```
+1. refreshTime: Time period, in seconds, between updates
+2. notifications: set it to true for notifications - requires zenity (check using "which notify-send" in terminal)
+3. maxCharacters: maximum number of characters to be displayed in the score summary
+4. repo_path: set the absolute location of the repo (ex: "~/Downloads/livcricket")
 ```
 
 ## CLI
