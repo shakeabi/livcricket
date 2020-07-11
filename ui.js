@@ -39,7 +39,7 @@ const App = ({ mode }) => {
 			});
 
 			const matches = rawMatches.map((ele, idx) => {
-				const title = ele.children.filter(subEle => {
+				let title = ele.children.filter(subEle => {
 					return subEle.name == 'title';
 				})[0].content;
 				const rssLink = ele.children.filter(subEle => {
@@ -49,6 +49,8 @@ const App = ({ mode }) => {
 				const link = ele.children.filter(subEle => {
 					return subEle.name == 'guid';
 				})[0].content;
+				
+				title = title.replace("&amp;", "&");
 
 				return {
 					label: title,
@@ -82,13 +84,18 @@ const App = ({ mode }) => {
 
 				if (settings.notifications) {
 					try {
-						const notif = execa('notify-send', [
-							'-i',
-							`${settings.repo_path}/lc_logo.png`,
-							`${statusText}\n${scoreText}`,
-						]);
-						//await sleep(500);
-						//notif.kill();
+						if(settings.disableNotifIcon){
+							const notif = execa('notify-send', [
+								`${statusText}\n${scoreText}`
+							]);
+						} else {
+							const notif = execa('notify-send', [
+								'-i',
+								`${settings.repo_path}/lc_logo.png`,
+								`${statusText}\n${scoreText}`
+							]);
+						}
+
 					} catch (err) {
 						console.log(
 							"Error: Please check if your computer has notify-send"

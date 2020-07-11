@@ -2,5 +2,6 @@
   "refreshTime": 30,
   "notifications": false,
   "maxCharacters": 80,
+  "disableNotifIcon": false,
   "repo_path": "<repo_local_path> (can be obtained by executing pwd)"
 }
