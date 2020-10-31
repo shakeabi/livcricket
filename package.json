@@ -28,7 +28,8 @@
 		"node-html-parser": "^1.1.16",
 		"prop-types": "^15.7.2",
 		"react": "^16.8.6",
-		"xml-parser": "^1.2.1"
+		"xml-parser": "^1.2.1",
+        "yargs-parser": ">=13.1.2"
 	},
 	"devDependencies": {
 		"@babel/core": "^7.5.0",
