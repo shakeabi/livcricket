@@ -73,7 +73,7 @@ const App = ({ mode }) => {
 				const fetchHtml = await execa('curl', ['-k', '-L', '-s', item.link]);
 				const root = parse(fetchHtml.stdout);
 
-				let statusText = root.querySelector('.status-label').innerHTML;
+				let statusText = root.querySelector('.status.red span').rawText;
 				let scoreText = root.querySelector('title').rawText;
 				scoreText = scoreText.replace(/\)[^]*/, '') + ')';
 				if (scoreText.length > settings.maxCharacters) {
